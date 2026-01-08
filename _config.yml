@@ -24,9 +24,9 @@ repository               : "academicpages/academicpages.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Ziqing Li (Chestnut Lee)"
+  name             : "Ziqing Li <br> (Chestnut Lee)"
   pronouns         : # example: "she/her"  
-  bio              : "PhD student in Computer Science"
+  bio              : "PhD student in CS"
   location         : "Wuhan / London"
   employer         : "HUST / IC"
   uri              : # URL
