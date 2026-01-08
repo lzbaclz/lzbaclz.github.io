@@ -24,13 +24,13 @@ repository               : "academicpages/academicpages.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Your Sidebar Name"
+  name             : "Ziqing Li (Chestnut Lee)"
   pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  bio              : "PhD student in Computer Science"
+  location         : "Wuhan / London"
+  employer         : "HUST / IC"
   uri              : # URL
-  email            : "none@example.org" 
+  email            : "chestnutlee23@gmail.com" 
 
   # Academic websites
   academia         : # URL
