@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Chestnut Personal Acadamic Website"
+title: "Chestnut Personal Academic Website"
 author_profile: true
 redirect_from: 
   - /about/
