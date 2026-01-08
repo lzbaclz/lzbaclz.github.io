@@ -14,9 +14,9 @@ Hi, I'm Ziqing Li (Chestnut Lee). I'm currently a third-year Ph.D. student at [H
 
 My research focuses on optimizing Storage Systems and MLSys. Recently, I've been working heavily on CXL-based solutions to improve system performance and memory efficiency. -->
 
-I am a third-year Ph.D. student at the [School of Computer Science and Technology](http://www.cs.hust.edu.cn/index.htm), [Huazhong University of Science and Technology (HUST)](https://www.hust.edu.cn/), supervised by Associate Professor [Jianxi Chen](http://faculty.hust.edu.cn/chenjianxi/zh_CN/index.htm).
+I am a third-year Ph.D. student at the [School of Computer Science and Technology](http://www.cs.hust.edu.cn/index.htm), [Huazhong University of Science and Technology (HUST)](https://www.hust.edu.cn/), supervised by Associate Professor [Jianxi Chen](http://faculty.hust.edu.cn/chenjianxi/zh_CN/index.htm). I am a member of the Key Laboratory of Information Storage System, Ministry of Education, which is led by Professor [Dan Feng](http://faculty.hust.edu.cn/dfeng/zh_CN/index.htm).
 
-I am a member of the Key Laboratory of Information Storage System, Ministry of Education, which is led by Professor [Dan Feng](http://faculty.hust.edu.cn/dfeng/zh_CN/index.htm). My research interests lie at the intersection of computer architecture and systems, with a specific focus on Storage Systems, MLSys, and CXL-based memory disaggregation.
+My research interests lie at the intersection of computer architecture and systems, with a specific focus on Storage Systems, MLSys, and CXL-based memory disaggregation.
 
 
 
