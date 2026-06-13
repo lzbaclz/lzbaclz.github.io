@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a Ph.D. student in Computer Science at the [School of Computer Science and Technology](http://www.cs.hust.edu.cn/index.htm), [Huazhong University of Science and Technology (HUST)](https://www.hust.edu.cn/), advised by Associate Professor [Jianxi Chen](http://faculty.hust.edu.cn/chenjianxi/zh_CN/index.htm). I am a member of the Key Laboratory of Information Storage System, Ministry of Education, led by Professor [Dan Feng](http://faculty.hust.edu.cn/dfeng/zh_CN/index.htm).
+I am Ziqing Li (Chester), a Ph.D. student in Computer Science at the [School of Computer Science and Technology](http://www.cs.hust.edu.cn/index.htm), [Huazhong University of Science and Technology (HUST)](https://www.hust.edu.cn/), advised by Associate Professor [Jianxi Chen](http://faculty.hust.edu.cn/chenjianxi/zh_CN/index.htm). I am a member of the Key Laboratory of Information Storage System, Ministry of Education, led by Professor [Dan Feng](http://faculty.hust.edu.cn/dfeng/zh_CN/index.htm).
 
 My research is in **memory systems for long-context LLM inference**. I study how to manage the **KV-cache** (the key/value tensors cached during Transformer decoding) when contexts become too large for **HBM** (GPU high-bandwidth memory). My work connects storage systems, computer architecture, MLSys, and real-time serving.
 
