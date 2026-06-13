@@ -41,3 +41,19 @@
     "vendor/font-awesome/solid",
     "vendor/font-awesome/brands"
 ;
+
+/* Site-specific fixes.
+ * Keep the author profile from intruding into the main text column at 100%
+ * browser zoom on medium-width desktop windows.
+ */
+.sidebar .author__bio {
+  max-width: 180px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.page__content,
+.archive__item-excerpt {
+  overflow-wrap: break-word;
+}
