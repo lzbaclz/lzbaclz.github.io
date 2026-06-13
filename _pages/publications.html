@@ -1,28 +1,52 @@
 ---
 layout: archive
-title: "Publications"
+title: "Publications and Manuscripts"
 permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
-
 {% include base_path %}
 
-{% if site.publication_category %}
-  {% for category in site.publication_category %}
-    {% assign title_shown = false %}
+This page lists public papers, manuscripts, and research artifacts. For project-level context, see the [Systems](/systems/) page.
+
+## Current manuscript
+
+- **OrchKvCache: Heterogeneous Storage-Orchestrated Tiered KV-Cache Management for Efficient LLM Inference**.  
+  Research manuscript / artifact in progress. The public project page is [OrchKvCache](https://github.com/lzbaclz/OrchKvCache).
+
+{% assign pub_count = site.publications | size %}
+
+{% if pub_count > 0 %}
+
+## Publication list
+
+  {% if site.author.googlescholar %}
+    <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
+  {% endif %}
+
+  {% if site.publication_category %}
+    {% for category in site.publication_category %}
+      {% assign title_shown = false %}
+      {% assign counter = 0 %}
+      {% for post in site.publications reversed %}
+        {% if post.category != category[0] %}
+          {% continue %}
+        {% endif %}
+        {% unless title_shown %}
+          <h2>{{ category[1].title }}</h2><hr />
+          {% assign title_shown = true %}
+        {% endunless %}
+        {% assign counter = counter | plus: 1 %}
+        <p style="margin-bottom: 1em;">
+          {{ counter }}. {{ post.authors }}, &ldquo;{{ post.title }}.&rdquo;
+          <i>{{ post.venue }}</i>, {{ post.date | date: "%b %Y" }}.
+          {% if post.paperurl %} <a href="{{ post.paperurl }}">[PDF]</a>{% endif %}
+        </p>
+      {% endfor %}
+    {% endfor %}
+  {% else %}
     {% assign counter = 0 %}
     {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
       {% assign counter = counter | plus: 1 %}
       <p style="margin-bottom: 1em;">
         {{ counter }}. {{ post.authors }}, &ldquo;{{ post.title }}.&rdquo;
@@ -30,18 +54,10 @@ author_profile: true
         {% if post.paperurl %} <a href="{{ post.paperurl }}">[PDF]</a>{% endif %}
       </p>
     {% endfor %}
-  {% endfor %}
+  {% endif %}
+
 {% else %}
-  {% assign counter = 0 %}
-  {% for post in site.publications reversed %}
-    {% assign counter = counter | plus: 1 %}
-    <p style="margin-bottom: 1em;">
-      {{ counter }}. {{ post.authors }}, &ldquo;{{ post.title }}.&rdquo;
-      <i>{{ post.venue }}</i>, {{ post.date | date: "%b %Y" }}.
-      {% if post.paperurl %} <a href="{{ post.paperurl }}">[PDF]</a>{% endif %}
-    </p>
-  {% endfor %}
+
+Additional public papers will be added here as they become available.
+
 {% endif %}
-
-
-
