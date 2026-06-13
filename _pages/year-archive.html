@@ -1,13 +1,16 @@
 ---
 layout: archive
 permalink: /year-archive/
-title: "Blog posts"
+title: "Notes"
 author_profile: true
 redirect_from:
   - /wordpress/blog-posts/
 ---
 
 {% include base_path %}
+
+I do not currently maintain a public blog on this site. This archive is kept for future research notes and is intentionally hidden from the main navigation until it has substantial content.
+
 {% capture written_year %}'None'{% endcapture %}
 {% for post in site.posts %}
   {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
