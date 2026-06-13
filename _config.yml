@@ -9,10 +9,10 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "Chet Homepage"
+title                    : "Ziqing Li"
 title_separator          : "-"
 name                     : &name "Ziqing Li"
-description              : &description "Ziqing Li's academic homepage - PhD student at HUST, research in Storage Systems, MLSys, and CXL"
+description              : &description "Ziqing Li's academic homepage - Ph.D. student at HUST working on memory systems for long-context LLM inference, KV-cache management, storage systems, and MLSys"
 url                      : https://lzbaclz.github.io/ # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -26,7 +26,7 @@ author:
   avatar           : "profile.png"
   name             : "Ziqing (Chester) Li"
   pronouns         : # example: "she/her"  
-  bio              : "PhD student in CS"
+  bio              : "Ph.D. student; memory systems for long-context LLM inference"
   location         : "Wuhan / London"
   employer         : "HUST"
   uri              : # URL
