@@ -81,11 +81,11 @@
   "interests": [
     {
       "name": "Memory systems for long-context LLM inference",
-      "keywords": ["KV-cache management", "offloading", "compression", "SLO-aware scheduling", "unified memory"]
+      "keywords": ["KV-cache management", "offloading", "compression", "SLO-aware scheduling", "cross-GPU KV handoff"]
     },
     {
       "name": "Storage systems and heterogeneous IO",
-      "keywords": ["GPU–SSD data paths", "NVM/SSD tiering", "CXL", "memory disaggregation"]
+      "keywords": ["GPU–SSD data paths", "GPU interconnects", "NVM/SSD tiering", "CXL", "memory disaggregation"]
     }
   ],
   "references": [],
@@ -159,10 +159,10 @@
     },
     {
       "name": "PeerKV",
-      "category": "Unified-memory KV placement",
+      "category": "Cross-GPU KV handoff",
       "date": "2026",
       "url": "https://github.com/lzbaclz/PeerKV",
-      "description": "KV-cache residency and compression on unified-memory and coherent-memory systems."
+      "description": "Cross-GPU KV-cache handoff contention on NVLink."
     }
   ]
 }
