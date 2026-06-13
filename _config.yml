@@ -26,7 +26,7 @@ author:
   avatar           : "profile.png"
   name             : "Ziqing (Chester) Li"
   pronouns         : # example: "she/her"  
-  bio              : "Ph.D. student; memory systems for long-context LLM inference"
+  bio              : "Ph.D. student · LLM memory systems"
   location         : "Wuhan / London"
   employer         : "HUST"
   uri              : # URL
@@ -89,7 +89,7 @@ publication_category:
   conferences:
     title: 'Conference Papers'
   manuscripts:
-    title: 'Journal Articles'
+    title: 'Preprints and Manuscripts'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
