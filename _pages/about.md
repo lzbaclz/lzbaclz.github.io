@@ -27,7 +27,7 @@ My current projects form a coherent stack for long-context LLM memory systems:
 | Semantic safety | Can offloading preserve full-attention semantics? | [HALO](https://github.com/lzbaclz/HALO) |
 | SLO control | Can KV placement satisfy P99 / P99.9 serving targets? | [SEER](https://github.com/lzbaclz/SEER) |
 | Saliency measurement | Which signals actually predict future important KV blocks? | [XQP](https://github.com/lzbaclz/xqp) |
-| Hardware-aware memory | What is a memory “tier” on unified-memory systems? | [PeerKV / UMA-LLM](https://github.com/lzbaclz/PeerKV) |
+| Hardware-aware memory | What is a memory “tier” on unified-memory systems? | [PeerKV](https://github.com/lzbaclz/PeerKV) |
 
 More details are collected on the [Systems](/systems/) page.
 
