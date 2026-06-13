@@ -1,152 +1,168 @@
 {
   "basics": {
-    "name": "Your Sidebar Name",
-    "email": "none@example.org",
+    "name": "Ziqing Li",
+    "label": "Ph.D. Student in Computer Architecture",
+    "email": "d202381502@hust.edu.cn",
     "phone": "",
-    "website": "https://academicpages.github.io",
-    "summary": "Currently employed at Red Brick University. Short biography for the left-hand sidebar",
+    "website": "https://lzbaclz.github.io",
+    "summary": "Ph.D. student at Huazhong University of Science and Technology working on memory systems for long-context LLM inference, with a focus on KV-cache management, storage systems, GPU memory systems, and MLSys runtime support.",
     "location": {
       "address": "",
       "postalCode": "",
-      "city": "Earth",
-      "countryCode": "US",
+      "city": "Wuhan / London",
+      "countryCode": "",
       "region": ""
     },
     "profiles": [
       {
-        "network": "Google Scholar",
-        "username": "",
-        "url": "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+        "network": "GitHub",
+        "username": "lzbaclz",
+        "url": "https://github.com/lzbaclz"
       },
       {
         "network": "ORCID",
-        "username": "",
-        "url": "https://orcid.org/yourorcidurl"
-      },
-      {
-        "network": "GitHub",
-        "username": "academicpages",
-        "url": "https://github.com/academicpages"
+        "username": "0009-0002-8938-5121",
+        "url": "https://orcid.org/0009-0002-8938-5121"
       }
     ]
   },
-  "work": [],
+  "work": [
+    {
+      "company": "Xiaomi Group",
+      "position": "Software Engineering Intern, Data Platform / OLAP Engine Team",
+      "website": "",
+      "startDate": "2023-11",
+      "endDate": "2024-02",
+      "summary": "Mentor: Yaodong Zhang, Senior Software Engineer and Apache Spark committer.",
+      "highlights": [
+        "Implemented column-level encryption for Parquet files in Apache Spark and Trino.",
+        "Helped protect sensitive columns independently in internal OLAP pipelines."
+      ]
+    }
+  ],
   "education": [
     {
-      "institution": "GitHub University",
-      "area": "Ph.D in Version Control Theory",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2018",
+      "institution": "Huazhong University of Science and Technology",
+      "area": "Ph.D. student in Computer Architecture",
+      "studyType": "Ph.D.",
+      "startDate": "2023",
+      "endDate": "present",
       "gpa": null,
       "courses": []
     },
     {
-      "institution": "GitHub University",
-      "area": "M.S. in Jekyll",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2014",
-      "gpa": null,
-      "courses": []
-    },
-    {
-      "institution": "GitHub University",
-      "area": "B.S. in GitHub",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2012",
+      "institution": "Beijing Jiaotong University",
+      "area": "B.S. in Computer Science and Technology",
+      "studyType": "B.S.",
+      "startDate": "2019",
+      "endDate": "2023",
       "gpa": null,
       "courses": []
     }
   ],
-  "skills": [],
+  "skills": [
+    {
+      "name": "Programming",
+      "level": "",
+      "keywords": ["C/C++", "Python", "Java", "Scala", "MATLAB"]
+    },
+    {
+      "name": "Systems",
+      "level": "",
+      "keywords": ["Linux systems programming", "Git", "GDB", "SPDK", "GPUDirect Storage", "HDFS"]
+    },
+    {
+      "name": "Research Areas",
+      "level": "",
+      "keywords": ["Long-context LLM inference", "KV-cache management", "Storage systems", "GPU memory systems", "CXL and memory disaggregation", "MLSys"]
+    }
+  ],
   "languages": [],
-  "interests": [],
+  "interests": [
+    {
+      "name": "Memory systems for long-context LLM inference",
+      "keywords": ["KV-cache management", "offloading", "compression", "SLO-aware scheduling", "unified memory"]
+    },
+    {
+      "name": "Storage systems and heterogeneous IO",
+      "keywords": ["GPU–SSD data paths", "NVM/SSD tiering", "CXL", "memory disaggregation"]
+    }
+  ],
   "references": [],
   "publications": [
     {
-      "name": "Paper Title Number 1",
-      "publisher": "Journal 1",
-      "releaseDate": "2009-10-01",
-      "website": "https://academicpages.github.io/files/paper1.pdf",
-      "summary": "This paper is about the number 1. The number 2 is left for future work."
+      "name": "Orchestrating LLM KV-Cache across GPU–DRAM–SSD with Attention-Aware Hotness Scheduling",
+      "publisher": "Targeting SC 2026",
+      "releaseDate": "2026",
+      "website": "https://github.com/lzbaclz/OrchKvCache",
+      "summary": "OrchKvCache manuscript / artifact in progress."
     },
     {
-      "name": "Paper Title Number 2",
-      "publisher": "Journal 1",
-      "releaseDate": "2010-10-01",
-      "website": "https://academicpages.github.io/files/paper2.pdf",
-      "summary": "This paper is about the number 2. The number 3 is left for future work."
+      "name": "Algebraically Identity-Preserving KV Tiering for Memory-Bounded Long-Context Inference",
+      "publisher": "Targeting EMNLP 2026 (ARR)",
+      "releaseDate": "2026",
+      "website": "https://github.com/lzbaclz/HALO",
+      "summary": "HALO manuscript / artifact in progress."
     },
     {
-      "name": "Paper Title Number 3",
-      "publisher": "Journal 1",
-      "releaseDate": "2015-10-01",
-      "website": "https://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about the number 3. The number 4 is left for future work."
+      "name": "Schedulable KV-Cache Eviction with a Probabilistic Sizing Bound for Real-Time LLM Decoding",
+      "publisher": "Targeting IEEE RTSS 2026",
+      "releaseDate": "2026",
+      "website": "https://github.com/lzbaclz/SEER",
+      "summary": "SEER manuscript / artifact in progress."
     },
     {
-      "name": "Paper Title Number 4",
-      "publisher": "GitHub Journal of Bugs",
-      "releaseDate": "2024-02-17",
-      "website": "https://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about fixing template issue #693."
+      "name": "Mining Attention Dynamics: Auditing KV-Saliency Prediction in LLMs",
+      "publisher": "Targeting IEEE ICDM 2026",
+      "releaseDate": "2026",
+      "website": "https://github.com/lzbaclz/xqp",
+      "summary": "XQP / KVSalienceBench manuscript / artifact in progress."
+    },
+    {
+      "name": "Direction Is Not a Knob: Cross-GPU KV-Cache Handoff Contention on NVLink",
+      "publisher": "Targeting IEEE ICCD 2026",
+      "releaseDate": "2026",
+      "website": "https://github.com/lzbaclz/PeerKV",
+      "summary": "PeerKV manuscript / artifact in progress."
     }
   ],
-  "presentations": [
-    {
-      "name": "Talk 1 on Relevant Topic in Your Field",
-      "event": "UC San Francisco, Department of Testing",
-      "date": "2012-03-01",
-      "location": "San Francisco, CA, USA",
-      "description": ""
-    },
-    {
-      "name": "Tutorial 1 on Relevant Topic in Your Field",
-      "event": "UC-Berkeley Institute for Testing Science",
-      "date": "2013-03-01",
-      "location": "Berkeley, CA, USA",
-      "description": ""
-    },
-    {
-      "name": "Talk 2 on Relevant Topic in Your Field",
-      "event": "London School of Testing",
-      "date": "2014-02-01",
-      "location": "London, UK",
-      "description": ""
-    },
-    {
-      "name": "Conference Proceeding talk 3 on Relevant Topic in Your Field",
-      "event": "Testing Institute of America 2014 Annual Conference",
-      "date": "2014-03-01",
-      "location": "Los Angeles, CA, USA",
-      "description": ""
-    }
-  ],
-  "teaching": [
-    {
-      "course": "Teaching experience 1",
-      "institution": "University 1, Department",
-      "date": "2014-01-01",
-      "role": "Undergraduate course",
-      "description": ""
-    },
-    {
-      "course": "Teaching experience 2",
-      "institution": "University 1, Department",
-      "date": "2015-01-01",
-      "role": "Workshop",
-      "description": ""
-    }
-  ],
+  "presentations": [],
+  "teaching": [],
   "portfolio": [
     {
-      "name": "Portfolio item number 1",
-      "category": "portfolio",
-      "date": "",
-      "url": "",
-      "description": "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+      "name": "OrchKvCache",
+      "category": "Tiered KV-cache substrate",
+      "date": "2026",
+      "url": "https://github.com/lzbaclz/OrchKvCache",
+      "description": "Tiered KV-cache management across GPU HBM, host DRAM, NVM, and SSD."
+    },
+    {
+      "name": "HALO",
+      "category": "Semantic-safe offloading",
+      "date": "2026",
+      "url": "https://github.com/lzbaclz/HALO",
+      "description": "Identity-preserving KV offloading through chunked attention and log-sum-exp merge."
+    },
+    {
+      "name": "SEER",
+      "category": "SLO-aware scheduling",
+      "date": "2026",
+      "url": "https://github.com/lzbaclz/SEER",
+      "description": "SLO-aware KV-cache eviction and prefetch under P99 / P99.9 latency targets."
+    },
+    {
+      "name": "XQP",
+      "category": "Saliency measurement",
+      "date": "2026",
+      "url": "https://github.com/lzbaclz/xqp",
+      "description": "Measurement-driven KV-block saliency prediction from LLM attention dynamics."
+    },
+    {
+      "name": "PeerKV",
+      "category": "Unified-memory KV placement",
+      "date": "2026",
+      "url": "https://github.com/lzbaclz/PeerKV",
+      "description": "KV-cache residency and compression on unified-memory and coherent-memory systems."
     }
   ]
 }
