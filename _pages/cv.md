@@ -69,7 +69,7 @@ Selected systems
 * **OrchKvCache:** tiered KV-cache management across GPU HBM, host DRAM, NVM, and SSD.
 * **HALO:** identity-preserving KV offloading through chunked attention and log-sum-exp merge.
 * **SEER:** SLO-aware KV-cache eviction and prefetch under P99 / P99.9 latency targets.
-* **Csp-llm / XQP:** measurement-driven KV-block saliency prediction.
+* **XQP:** measurement-driven KV-block saliency prediction.
 * **PeerKV / UMA-LLM:** KV-cache residency and compression on unified-memory systems.
 
 Skills
