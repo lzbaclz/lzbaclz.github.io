@@ -41,7 +41,7 @@ author_profile: true
       <td>Minimal, calibrated predictors for future KV-block importance</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/lzbaclz/PeerKV">PeerKV / UMA-LLM</a></td>
+      <td><a href="https://github.com/lzbaclz/PeerKV">PeerKV</a></td>
       <td>Unified-memory KV placement</td>
       <td>Residency-state tiering and compression on Apple Silicon / Grace-Hopper style systems</td>
     </tr>
@@ -62,7 +62,7 @@ author_profile: true
 <h3>XQP</h3>
 <p><strong>XQP</strong> is a measurement-driven study of KV-block saliency prediction. It asks which cheap signals predict future important blocks, including within-layer attention magnitude, cross-layer hotness, query-key affinity, and recency. The goal is not to build the largest predictor, but to identify the smallest calibrated model that is actually useful on measured attention traces.</p>
 
-<h3>PeerKV / UMA-LLM</h3>
+<h3>PeerKV</h3>
 <p><strong>PeerKV</strong> studies the same KV-cache problem on unified-memory and coherent-memory platforms. On Apple Silicon and Grace-Hopper style systems, a “tier” is not only a physical location; it may be a residency state such as GPU-active, CPU-active, compressed, or swapped. PeerKV explores cost models and placement policies for that setting.</p>
 
 <h2>Design principle</h2>
