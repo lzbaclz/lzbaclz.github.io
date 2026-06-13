@@ -27,7 +27,7 @@ My current projects form a coherent stack for long-context LLM memory systems:
 | Semantic safety | Can offloading preserve full-attention semantics? | [HALO](https://github.com/lzbaclz/HALO) |
 | SLO control | Can KV placement satisfy P99 / P99.9 serving targets? | [SEER](https://github.com/lzbaclz/SEER) |
 | Saliency measurement | Which signals actually predict future important KV blocks? | [XQP](https://github.com/lzbaclz/xqp) |
-| Hardware-aware memory | What is a memory “tier” on unified-memory systems? | [PeerKV](https://github.com/lzbaclz/PeerKV) |
+| Hardware-aware memory | What happens when KV-cache handoff crosses GPU interconnects? | [PeerKV](https://github.com/lzbaclz/PeerKV) |
 
 More details are collected on the [Systems](/systems/) page.
 
@@ -37,7 +37,7 @@ More details are collected on the [Systems](/systems/) page.
 - **Identity-preserving offloading**: moving cold KV blocks out of GPU memory while preserving full-attention semantics through chunked attention and log-sum-exp merging.
 - **SLO-aware scheduling**: treating KV-cache eviction and prefetch as a soft real-time scheduling problem under P99 / P99.9 latency targets.
 - **Attention-dynamics prediction**: using measured attention traces to predict future salient KV blocks with small, calibrated models.
-- **Unified-memory inference**: rethinking KV-cache placement on Apple Silicon and Grace-Hopper systems where CPU and GPU memory are coherent or physically shared.
+- **Hardware-aware KV movement**: studying how GPU memory systems and interconnects shape KV-cache placement, handoff, and contention.
 
 ## Broader interests
 
