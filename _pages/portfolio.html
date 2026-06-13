@@ -36,7 +36,7 @@ author_profile: true
       <td>Deadline-miss-aware KV eviction and prefetch under serving latency targets</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/lzbaclz/Csp-llm">Csp-llm / XQP</a></td>
+      <td><a href="https://github.com/lzbaclz/xqp">XQP</a></td>
       <td>Saliency measurement</td>
       <td>Minimal, calibrated predictors for future KV-block importance</td>
     </tr>
@@ -59,7 +59,7 @@ author_profile: true
 <h3>SEER</h3>
 <p><strong>SEER</strong> treats KV-cache management as a soft real-time scheduling problem. It asks whether a KV policy can satisfy serving objectives such as P99 TPOT below a target deadline. The policy combines learned block usefulness, tier-specific IO cost, and an adaptive IO penalty controlled by observed latency slack.</p>
 
-<h3>Csp-llm / XQP</h3>
+<h3>XQP</h3>
 <p><strong>XQP</strong> is a measurement-driven study of KV-block saliency prediction. It asks which cheap signals predict future important blocks, including within-layer attention magnitude, cross-layer hotness, query-key affinity, and recency. The goal is not to build the largest predictor, but to identify the smallest calibrated model that is actually useful on measured attention traces.</p>
 
 <h3>PeerKV / UMA-LLM</h3>
