@@ -1,14 +1,52 @@
 ---
 layout: archive
-title: "Portfolio"
-permalink: /portfolio/
+title: "Research Systems"
+permalink: /systems/
 author_profile: true
 ---
 
 {% include base_path %}
 
+This page summarizes my public research systems and artifacts. The systems are organized as a portfolio rather than as isolated projects: together they study how KV-cache can be placed, offloaded, scheduled, predicted, compressed, and adapted to different memory architectures.
 
-{% for post in site.portfolio %}
-  {% include archive-single.html %}
-{% endfor %}
+## Portfolio map
 
+| System | Role | Current scope |
+| --- | --- | --- |
+| [OrchKvCache](https://github.com/lzbaclz/OrchKvCache) | Tiered KV-cache substrate | HBM / DRAM / NVM / SSD object model, migration, eviction, and prefetch |
+| [HALO](https://github.com/lzbaclz/HALO) | Semantic-safe offloading | Full-attention-preserving chunked KV offload with log-sum-exp merge |
+| [SEER](https://github.com/lzbaclz/SEER) | SLO-aware scheduling | Deadline-miss-aware KV eviction and prefetch under serving latency targets |
+| [Csp-llm / XQP](https://github.com/lzbaclz/Csp-llm) | Saliency measurement | Minimal, calibrated predictors for future KV-block importance |
+| [PeerKV / UMA-LLM](https://github.com/lzbaclz/PeerKV) | Unified-memory KV placement | Residency-state tiering and compression on Apple Silicon / Grace-Hopper style systems |
+
+## Systems
+
+### OrchKvCache
+
+**OrchKvCache** studies KV-cache as a managed storage object. It explores a heterogeneous memory hierarchy with **GPU HBM** (fast GPU memory), **host DRAM** (larger warm memory), **NVM** (low-latency persistent memory), and **SSD** (large cold storage). The system tracks KV blocks, classifies them as hot or cold, migrates them across tiers, and schedules prefetches based on attention-derived hotness.
+
+### HALO
+
+**HALO** focuses on semantic safety. Instead of discarding cold KV blocks, it moves them out of GPU memory and streams them back during decoding. The attention result is reconstructed with **online softmax / log-sum-exp merge**, so the system can reason separately about placement cost and semantic loss.
+
+### SEER
+
+**SEER** treats KV-cache management as a soft real-time scheduling problem. It asks whether a KV policy can satisfy serving objectives such as P99 TPOT below a target deadline. The policy combines learned block usefulness, tier-specific IO cost, and an adaptive IO penalty controlled by observed latency slack.
+
+### Csp-llm / XQP
+
+**XQP** is a measurement-driven study of KV-block saliency prediction. It asks which cheap signals predict future important blocks, including within-layer attention magnitude, cross-layer hotness, query-key affinity, and recency. The goal is not to build the largest predictor, but to identify the smallest calibrated model that is actually useful on measured attention traces.
+
+### PeerKV / UMA-LLM
+
+**PeerKV** studies the same KV-cache problem on unified-memory and coherent-memory platforms. On Apple Silicon and Grace-Hopper style systems, a “tier” is not only a physical location; it may be a residency state such as GPU-active, CPU-active, compressed, or swapped. PeerKV explores cost models and placement policies for that setting.
+
+## Design principle
+
+The common theme is that long-context LLM inference should manage KV-cache explicitly, with clear distinctions between:
+
+- **exact placement**: data is moved but full-attention semantics are preserved;
+- **approximate compression**: data is kept but represented with lower precision;
+- **lossy eviction**: data may be dropped or ignored, creating quality risk;
+- **latency-aware scheduling**: placement decisions are constrained by SLOs;
+- **hardware-aware residency**: the cost model changes across PCIe GPUs, UMA systems, and coherent CPU-GPU platforms.
