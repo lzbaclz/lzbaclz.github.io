@@ -7,57 +7,44 @@ author_profile: true
 
 {% include base_path %}
 
-This page lists public papers, manuscripts, and research artifacts. For project-level context, see the [Systems](/systems/) page.
+<p>This page lists my current manuscripts and public research artifacts. Venue labels below indicate current targets or intended submission tracks, not accepted publications.</p>
 
-## Current manuscript
+<h2>Manuscripts in progress</h2>
 
-- **OrchKvCache: Heterogeneous Storage-Orchestrated Tiered KV-Cache Management for Efficient LLM Inference**.  
-  Research manuscript / artifact in progress. The public project page is [OrchKvCache](https://github.com/lzbaclz/OrchKvCache).
+<ol>
+  <li>
+    <p><strong>OrchKvCache: Heterogeneous Storage-Orchestrated Tiered KV-Cache Management for Efficient LLM Inference.</strong><br />
+    <em>Targeting SC / high-performance storage-systems track.</em><br />
+    Public artifact: <a href="https://github.com/lzbaclz/OrchKvCache">OrchKvCache</a>.</p>
+  </li>
 
-{% assign pub_count = site.publications | size %}
+  <li>
+    <p><strong>HALO: Beyond the Eviction Lower Bound: Lossless KV Tiering as a Universal Backstop for Selection-Based Long-Context LLM Inference.</strong><br />
+    <em>Targeting EMNLP 2026.</em><br />
+    Public artifact: <a href="https://github.com/lzbaclz/HALO">HALO</a>.</p>
+  </li>
 
-{% if pub_count > 0 %}
+  <li>
+    <p><strong>SEER: Schedulable Eviction via Expected Retrieval for Real-Time Long-Context LLM Decoding.</strong><br />
+    <em>Targeting RTSS 2026.</em><br />
+    Public artifact: <a href="https://github.com/lzbaclz/SEER">SEER</a>.</p>
+  </li>
 
-## Publication list
+  <li>
+    <p><strong>XQP: Mining Attention Dynamics for Minimal, Calibrated, and Conformal Prediction of Salient KV States in LLMs.</strong><br />
+    <em>Targeting ICDM 2026.</em><br />
+    Public artifact: <a href="https://github.com/lzbaclz/Csp-llm">Csp-llm / XQP</a>.</p>
+  </li>
 
-  {% if site.author.googlescholar %}
-    <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-  {% endif %}
+  <li>
+    <p><strong>PeerKV / UMA-LLM: KV Cache Management for Apple Silicon Unified Memory.</strong><br />
+    <em>Targeting IEEE ICCD.</em><br />
+    Public artifact: <a href="https://github.com/lzbaclz/PeerKV">PeerKV</a>.</p>
+  </li>
+</ol>
 
-  {% if site.publication_category %}
-    {% for category in site.publication_category %}
-      {% assign title_shown = false %}
-      {% assign counter = 0 %}
-      {% for post in site.publications reversed %}
-        {% if post.category != category[0] %}
-          {% continue %}
-        {% endif %}
-        {% unless title_shown %}
-          <h2>{{ category[1].title }}</h2><hr />
-          {% assign title_shown = true %}
-        {% endunless %}
-        {% assign counter = counter | plus: 1 %}
-        <p style="margin-bottom: 1em;">
-          {{ counter }}. {{ post.authors }}, &ldquo;{{ post.title }}.&rdquo;
-          <i>{{ post.venue }}</i>, {{ post.date | date: "%b %Y" }}.
-          {% if post.paperurl %} <a href="{{ post.paperurl }}">[PDF]</a>{% endif %}
-        </p>
-      {% endfor %}
-    {% endfor %}
-  {% else %}
-    {% assign counter = 0 %}
-    {% for post in site.publications reversed %}
-      {% assign counter = counter | plus: 1 %}
-      <p style="margin-bottom: 1em;">
-        {{ counter }}. {{ post.authors }}, &ldquo;{{ post.title }}.&rdquo;
-        <i>{{ post.venue }}</i>, {{ post.date | date: "%b %Y" }}.
-        {% if post.paperurl %} <a href="{{ post.paperurl }}">[PDF]</a>{% endif %}
-      </p>
-    {% endfor %}
-  {% endif %}
+<h2>Research theme</h2>
 
-{% else %}
+<p>These manuscripts are part of a single research portfolio on <strong>long-context LLM memory systems</strong>: tiered KV-cache management, semantic-safe offloading, SLO-aware scheduling, attention-dynamics-based saliency prediction, and unified-memory KV placement.</p>
 
-Additional public papers will be added here as they become available.
-
-{% endif %}
+<p>For project-level context, see the <a href="/systems/">Research Systems</a> page.</p>
