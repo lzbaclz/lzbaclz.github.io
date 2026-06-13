@@ -31,20 +31,20 @@ Research interests
 * KV-cache management, offloading, compression, and scheduling
 * Storage systems and heterogeneous IO paths
 * CXL and memory disaggregation
-* GPU memory management and MLSys runtime support
+* GPU memory management, GPU interconnects, and MLSys runtime support
 
 Research experience
 ======
 * **Long-context LLM memory systems** (2025–present)  
   *Advisors:* Assoc. Prof. Jianxi Chen and Prof. Dan Feng, HUST  
   * Study KV-cache as a managed memory object for long-context LLM inference, including tiered placement, offloading, prefetch, and scheduling.
-  * Built research systems around GPU HBM, host DRAM, NVM, SSD, and unified-memory platforms.
-  * Explored exact placement, lossy eviction, calibrated saliency prediction, and SLO-aware scheduling as separate design modes.
+  * Built research systems around GPU HBM, host DRAM, SSD-backed storage paths, and cross-GPU KV movement.
+  * Explored exact placement, lossy eviction, calibrated saliency prediction, SLO-aware scheduling, and interconnect-aware KV handoff as separate design modes.
 
 * **LLM inference acceleration with PCIe 5.0 SSD arrays** (Apr 2025–present)  
   *Advisors:* Assoc. Prof. Jianxi Chen and Prof. Dan Feng, HUST  
   * Designed a hot/cold separation scheme using attention EMA, temporal decay, and access frequency for online KV-block classification.
-  * Integrated heterogeneous storage ideas from OrchFS to build a GPU–DRAM–NVM–SSD hierarchy for KV-cache management.
+  * Integrated heterogeneous storage ideas from OrchFS to build a GPU–DRAM–SSD hierarchy for KV-cache management.
   * Studied overlapping compute, prefetch, and preload pipelines to reduce storage migration latency.
 
 * **GPUDirect Storage for GPU–SSD collaborative systems** (Mar 2025–present)  
@@ -66,17 +66,17 @@ Work experience
 
 Selected systems
 ======
-* **OrchKvCache:** tiered KV-cache management across GPU HBM, host DRAM, NVM, and SSD.
-* **HALO:** identity-preserving KV offloading through chunked attention and log-sum-exp merge.
+* **OrchKvCache:** tiered KV-cache management across GPU HBM, host DRAM, and SSD-backed storage paths.
+* **HALO:** identity-preserving KV tiering for memory-bounded long-context inference.
 * **SEER:** SLO-aware KV-cache eviction and prefetch under P99 / P99.9 latency targets.
-* **XQP:** measurement-driven KV-block saliency prediction.
-* **PeerKV:** KV-cache residency and compression on unified-memory systems.
+* **XQP:** measurement-driven audit of KV-block saliency prediction.
+* **PeerKV:** cross-GPU KV-cache handoff contention on NVLink.
 
 Skills
 ======
 * **Programming:** C/C++, Java, Python, Scala, MATLAB
 * **Systems & tools:** Git, GDB, SPDK, GPUDirect Storage, HDFS, Linux systems programming
-* **Research areas:** storage systems, LLM inference systems, GPU memory systems, memory disaggregation, MLSys
+* **Research areas:** storage systems, LLM inference systems, GPU memory systems, GPU interconnects, memory disaggregation, MLSys
 
 Awards
 ======
