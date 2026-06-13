@@ -1,74 +1,84 @@
 ---
 permalink: /
-title: "Chestnut Personal Academic Website"
+title: "Ziqing Li — Memory Systems for Long-Context LLM Inference"
 author_profile: true
-redirect_from: 
+redirect_from:
   - /about/
   - /about.html
 ---
 
+I am a Ph.D. student in Computer Science at the [School of Computer Science and Technology](http://www.cs.hust.edu.cn/index.htm), [Huazhong University of Science and Technology (HUST)](https://www.hust.edu.cn/), advised by Associate Professor [Jianxi Chen](http://faculty.hust.edu.cn/chenjianxi/zh_CN/index.htm). I am a member of the Key Laboratory of Information Storage System, Ministry of Education, led by Professor [Dan Feng](http://faculty.hust.edu.cn/dfeng/zh_CN/index.htm).
 
-<!-- I'm a third year undergraduate student from [School of ICSE](https://icse.uestc.edu.cn/), [UESTC](https://uestc.edu.cn/). My research interest includes computer vision, digital circuit design, deep learning, and spiking neuro network.
+My research is in **computer systems for machine learning**, with a focus on **memory and storage systems for long-context LLM inference**. I study how to manage the **KV-cache** (the cached key/value tensors used during Transformer decoding) when contexts grow beyond the practical capacity of **HBM** (GPU high-bandwidth memory). My recent work connects storage systems, computer architecture, real-time systems, and MLSys.
 
-Hi, I'm Ziqing Li (Chestnut Lee). I'm currently a third-year Ph.D. student at [HUST](https://www.hust.edu.cn/) in China, working at the [Information Storage System Key Lab]().
+## Research focus
 
-My research focuses on optimizing Storage Systems and MLSys. Recently, I've been working heavily on CXL-based solutions to improve system performance and memory efficiency. -->
+The central question I am working on is:
 
-I am a third-year Ph.D. student at the [School of Computer Science and Technology](http://www.cs.hust.edu.cn/index.htm), [Huazhong University of Science and Technology (HUST)](https://www.hust.edu.cn/), supervised by Associate Professor [Jianxi Chen](http://faculty.hust.edu.cn/chenjianxi/zh_CN/index.htm). I am a member of the Key Laboratory of Information Storage System, Ministry of Education, which is led by Professor [Dan Feng](http://faculty.hust.edu.cn/dfeng/zh_CN/index.htm).
+> How can long-context LLM serving remain memory-efficient, latency-predictable, and semantically safe when the KV-cache becomes larger than GPU memory?
 
-My research interests lie at the intersection of computer architecture and systems, with a specific focus on Storage Systems, MLSys, and CXL-based memory disaggregation.
+I approach this problem from several layers of the system stack:
 
-Please feel free to [email me](mailto:d202381502@hust.edu.cn) if you would like to discuss collaboration or related research :)
+- **Tiered KV-cache management** (placing KV blocks across GPU HBM, host DRAM, NVM, and SSD according to access hotness).
+- **Identity-preserving offloading** (moving cold KV blocks out of GPU memory while preserving full-attention semantics through chunked attention and log-sum-exp merging).
+- **SLO-aware scheduling** (treating KV-cache eviction and prefetch as a soft real-time scheduling problem under P99 / P99.9 latency targets).
+- **Attention-dynamics prediction** (using measured attention traces to predict future salient KV blocks with small, calibrated models).
+- **Unified-memory inference** (rethinking KV-cache tiers on Apple Silicon and Grace-Hopper systems where CPU and GPU memory are coherent or physically shared).
+
+## Current systems and artifacts
+
+### [OrchKvCache](https://github.com/lzbaclz/OrchKvCache)
+
+A tiered KV-cache substrate for long-context LLM inference. OrchKvCache explores a four-level storage hierarchy: **GPU HBM** (fastest GPU memory), **host DRAM** (CPU memory used as a larger warm tier), **NVM** (non-volatile memory used for low-latency cold storage), and **SSD** (large-capacity cold storage). It manages KV blocks with hot/cold classification, eviction, migration, and prefetch scheduling.
+
+The main idea is to treat KV-cache as a storage-system object rather than a passive tensor buffer. KV blocks are tracked, scored, demoted, promoted, and prefetched according to attention-derived hotness and tier-specific IO costs.
+
+### [HALO](https://github.com/lzbaclz/HALO)
+
+A system for **identity-preserving tier-paged KV offloading** (offloading KV-cache without discarding information needed by full attention). HALO keeps recent KV blocks on GPU and moves older cold KV blocks to host DRAM. During decoding, cold blocks are streamed back chunk by chunk and merged with the hot GPU-resident blocks using **online softmax / log-sum-exp merge** (a numerically stable way to combine partial attention results).
+
+HALO is motivated by a simple systems principle: if eviction risks quality loss, make offloading a placement problem first. The cold data may be slow, but it should still be available to the attention computation when needed.
+
+### [SEER](https://github.com/lzbaclz/SEER)
+
+A soft real-time framework for KV-cache eviction and prefetch under serving objectives. SEER models long-context decoding as a sequence of jobs with deadlines and studies whether a KV policy can satisfy an **SLO** (service-level objective, such as P99 TPOT below 50 ms). It focuses on **deadline-miss probability** (the chance that a decode step exceeds its latency deadline) rather than only average quality or throughput.
+
+SEER combines a learned attention predictor with an IO-aware scheduling policy. The policy scores each candidate block by predicted usefulness minus a tier-dependent IO penalty, while a controller adjusts the IO penalty according to observed latency slack.
+
+### [Csp-llm / XQP](https://github.com/lzbaclz/Csp-llm)
+
+A measurement-driven study of KV-block saliency prediction. XQP asks which cheap signals actually predict whether a KV block will be important in future attention. The investigated signals include **within-layer attention EMA** (recent attention magnitude in the same layer), **cross-layer hotness** (whether the previous layer already marked a block as important), **query-key affinity** (similarity between the current query and stored keys), and **recency** (how recently a block was used).
+
+The main research direction is minimal sufficient modeling: prefer the smallest calibrated predictor that matches heavier baselines on real attention traces. This line of work is useful for deciding when learned KV-cache policies are genuinely better than simple attention-based heuristics, and when they are not.
+
+### [PeerKV / UMA-LLM](https://github.com/lzbaclz/PeerKV)
+
+A project on KV-cache management for **UMA** (unified memory architecture, where CPU and GPU share or coherently access one memory space). On Apple Silicon and NVIDIA Grace-Hopper, the old PCIe offloading model changes: the key cost is no longer always explicit data movement, but cache-line residency, compression, page migration, and memory pressure.
+
+PeerKV studies KV-cache placement under residency states such as GPU-active, CPU-active, compressed, and swapped. It also explores selective low-bit KV compression, MLX-based inference on Apple Silicon, and cost-model-based active-memory sizing.
+
+## Technical themes
+
+My recent projects share several recurring technical themes:
+
+- **KV-cache as a managed memory object**: expose KV blocks to scheduling, placement, and IO policies rather than treating them as opaque tensors.
+- **Prediction with accountability**: use predictors only when their calibration, tail latency, and deployment behavior are measured.
+- **Semantic safety first**: separate lossless placement from lossy eviction so that the system can reason explicitly about quality risk.
+- **Tail latency over averages**: optimize and bound P99 / P99.9 behavior because interactive LLM serving is dominated by tail latency.
+- **Hardware-aware memory models**: adapt the definition of a “tier” to the hardware, from PCIe-attached GPUs to coherent unified-memory platforms.
+
+## Background interests
+
+Beyond LLM inference, I am broadly interested in:
+
+- storage systems and heterogeneous IO paths,
+- CXL and memory disaggregation,
+- GPU memory management,
+- operating-system and runtime support for ML workloads,
+- computer architecture for data-intensive systems.
+
+## Contact
+
+I am always happy to discuss systems research, long-context LLM inference, storage systems, and research collaboration. Please feel free to [email me](mailto:d202381502@hust.edu.cn).
 
 {% include visitor-flagcounter.html %}
-
-<!-- This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the repository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. Incidentally, these same features make it a great template for anyone that needs to show off a professional template!
-
- You can fork [this template](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and Markdown files, add your own PDFs and other content, and have your own site for free, with no ads! -->
-
-
-
-<!-- 
-A data-driven personal website
-======
-Like many other Jekyll-based GitHub Pages templates, Academic Pages makes you separate the website's content from its form. The content & metadata of your website are in structured Markdown files, while various other files constitute the theme, specifying how to transform that content & metadata into HTML pages. You keep these various Markdown (.md), YAML (.yml), HTML, and CSS files in a public GitHub repository. Each time you commit and push an update to the repository, the [GitHub pages](https://pages.github.com/) service creates static HTML pages based on these files, which are hosted on GitHub's servers free of charge.
-
-Many of the features of dynamic content management systems (like Wordpress) can be achieved in this fashion, using a fraction of the computational resources and with far less vulnerability to hacking and DDoSing. You can also modify the theme to your heart's content without touching the content of your site. If you get to a point where you've broken something in Jekyll/HTML/CSS beyond repair, your Markdown files describing your talks, publications, etc. are safe. You can rollback the changes or even delete the repository and start over - just be sure to save the Markdown files! You can also write scripts that process the structured data on the site, such as [this one](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb) that analyzes metadata in pages about talks to display [a map of every location you've given a talk](https://academicpages.github.io/talkmap.html).
-
-For those users that need more advanced functionality, the template also supports the following popular tools:
-- [MathJax](https://www.mathjax.org/) for mathematical equations
-- [Mermaid](https://mermaid.js.org/) for diagraming
-- [Plotly](https://plotly.com/javascript/) for plotting
-
-Getting started
-======
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this template](https://github.com/academicpages/academicpages.github.io) by clicking the "Use this template" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](https://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
-
-Site-wide configuration
-------
-The main configuration file for the site is in the base directory in [_config.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_config.yml), which defines the content in the sidebars and other site-wide features. You will need to replace the default variables with ones about yourself and your site's github repository. The configuration file for the top menu is in [_data/navigation.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_data/navigation.yml). For example, if you don't have a portfolio or blog posts, you can remove those items from that navigation.yml file to remove them from the header. 
-
-Create content & metadata
-------
-For site content, there is one Markdown file for each type of content, which are stored in directories like _publications, _talks, _posts, _teaching, or _pages. For example, each talk is a Markdown file in the [_talks directory](https://github.com/academicpages/academicpages.github.io/tree/master/_talks). At the top of each Markdown file is structured data in YAML about the talk, which the theme will parse to do lots of cool stuff. The same structured data about a talk is used to generate the list of talks on the [Talks page](https://academicpages.github.io/talks), each [individual page](https://academicpages.github.io/talks/2012-03-01-talk-1) for specific talks, the talks section for the [CV page](https://academicpages.github.io/cv), and the [map of places you've given a talk](https://academicpages.github.io/talkmap.html) (if you run this [python file](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.py) or [Jupyter notebook](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb), which creates the HTML for the map based on the contents of the _talks directory).
-
-**Markdown generator**
-
-The repository includes [a set of Jupyter notebooks](https://github.com/academicpages/academicpages.github.io/tree/master/markdown_generator
-) that converts a CSV containing structured data about talks or presentations into individual Markdown files that will be properly formatted for the Academic Pages template. The sample CSVs in that directory are the ones I used to create my own personal website at stuartgeiger.com. My usual workflow is that I keep a spreadsheet of my publications and talks, then run the code in these notebooks to generate the Markdown files, then commit and push them to the GitHub repository.
-
-How to edit your site's GitHub repository
-------
-Many people use a git client to create files on their local computer and then push them to GitHub's servers. If you are not familiar with git, you can directly edit these configuration and Markdown files directly in the github.com interface. Navigate to a file (like [this one](https://github.com/academicpages/academicpages.github.io/blob/master/_talks/2012-03-01-talk-1.md) and click the pencil icon in the top right of the content preview (to the right of the "Raw | Blame | History" buttons). You can delete a file by clicking the trashcan icon to the right of the pencil icon. You can also create new files or upload files by navigating to a directory and clicking the "Create new file" or "Upload files" buttons. 
-
-Example: editing a Markdown file for a talk
-![Editing a Markdown file for a talk](/images/editing-talk.png)
-
-For more info
-------
-More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/), the [growing wiki](https://github.com/academicpages/academicpages.github.io/wiki), and you can always [ask a question on GitHub](https://github.com/academicpages/academicpages.github.io/discussions). The [guides for the Minimal Mistakes theme](https://mmistakes.github.io/minimal-mistakes/docs/configuration/) (which this theme was forked from) might also be helpful. -->
