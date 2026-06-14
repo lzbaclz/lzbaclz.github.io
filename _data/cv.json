@@ -85,27 +85,27 @@
     },
     {
       "name": "Storage systems and heterogeneous IO",
-      "keywords": ["GPU–SSD data paths", "GPU interconnects", "NVM/SSD tiering", "CXL", "memory disaggregation"]
+      "keywords": ["GPU-SSD data paths", "GPU interconnects", "NVM/SSD tiering", "CXL", "memory disaggregation"]
     }
   ],
   "references": [],
   "publications": [
     {
-      "name": "Orchestrating LLM KV-Cache across GPU–DRAM–SSD with Attention-Aware Hotness Scheduling",
+      "name": "OrchKvCache: Orchestrating LLM KV-Cache across GPU-DRAM-SSD with Attention-Aware Hotness Scheduling",
       "publisher": "Targeting SC 2026",
       "releaseDate": "2026",
       "website": "https://github.com/lzbaclz/OrchKvCache",
       "summary": "OrchKvCache manuscript / artifact in progress."
     },
     {
-      "name": "Algebraically Identity-Preserving KV Tiering for Memory-Bounded Long-Context Inference",
+      "name": "HALO: Algebraically Identity-Preserving KV Tiering for Memory-Bounded Long-Context Inference",
       "publisher": "Targeting EMNLP 2026 (ARR)",
       "releaseDate": "2026",
       "website": "https://github.com/lzbaclz/HALO",
       "summary": "HALO manuscript / artifact in progress."
     },
     {
-      "name": "Schedulable KV-Cache Eviction with a Probabilistic Sizing Bound for Real-Time LLM Decoding",
+      "name": "SEER: Schedulable KV-Cache Eviction with a Probabilistic Sizing Bound for Real-Time LLM Decoding",
       "publisher": "Targeting IEEE RTSS 2026",
       "releaseDate": "2026",
       "website": "https://github.com/lzbaclz/SEER",
@@ -119,7 +119,7 @@
       "summary": "XQP / KVSalienceBench manuscript / artifact in progress."
     },
     {
-      "name": "Direction Is Not a Knob: Cross-GPU KV-Cache Handoff Contention on NVLink",
+      "name": "Direction Is Not a K&#110;ob: Cross-GPU KV-Cache Handoff Contention on NVLink",
       "publisher": "Targeting IEEE ICCD 2026",
       "releaseDate": "2026",
       "website": "https://github.com/lzbaclz/PeerKV",
