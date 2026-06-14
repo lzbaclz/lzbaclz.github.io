@@ -1,5 +1,5 @@
 ---
-title: "Orchestrating LLM KV-Cache across GPU–DRAM–SSD with Attention-Aware Hotness Scheduling"
+title: "OrchKvCache: Orchestrating LLM KV-Cache across GPU-DRAM-SSD with Attention-Aware Hotness Scheduling"
 collection: publications
 category: conferences
 permalink: /publication/2026-03-24-orchkvcache
