@@ -119,7 +119,7 @@
       "summary": "XQP / KVSalienceBench manuscript / artifact in progress."
     },
     {
-      "name": "Direction Is Not a K&#110;ob: Cross-GPU KV-Cache Handoff Contention on NVLink",
+      "name": "Direction Is Not a Knob: Cross-GPU KV-Cache Handoff Contention on NVLink",
       "publisher": "Targeting IEEE ICCD 2026",
       "releaseDate": "2026",
       "website": "https://github.com/lzbaclz/PeerKV",
